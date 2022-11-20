@@ -17,7 +17,6 @@ extern "C" {
 int main(int argc, char* argv[]) {
 
 	const int portNb = 19997;
-
 	int clientID = simxStart((simxChar*)"127.0.0.1", portNb, true, true, 2000, 5);
 	std::cout << "Remote API client started. Client ID: " << clientID << std::endl;
 
