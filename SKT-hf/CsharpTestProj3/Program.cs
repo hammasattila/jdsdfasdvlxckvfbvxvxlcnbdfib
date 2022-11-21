@@ -46,6 +46,17 @@ namespace CsharpTestProj3
         [DllImport("CoppeliaSimInterfaceDLL.dll")]
         public static extern int csharp_GetPingTime(IntPtr a);
 
+        [DllImport("CoppeliaSimInterfaceDLL.dll")]
+        public static extern float csharp_GetPioneer_Oalpha(IntPtr a);
+
+        [DllImport("CoppeliaSimInterfaceDLL.dll")]
+        public static extern float csharp_GetPioneer_Obeta(IntPtr a);
+
+        [DllImport("CoppeliaSimInterfaceDLL.dll")]
+        public static extern float csharp_GetPioneer_Ogamma(IntPtr a);
+
+
+
         static void Main(string[] args)
         {
             //IntPtr a = Create(5);
@@ -59,8 +70,8 @@ namespace CsharpTestProj3
             for (int i = 0;i<500;i++)
             {
                 csharp_SimIteration(b);
-                Console.WriteLine(csharp_GetPioneer_v(b));
-                Console.WriteLine(csharp_GetPingTime(b));
+                Console.WriteLine(csharp_GetPioneer_v(b) + " " + csharp_GetPioneer_Oalpha(b) + " " + csharp_GetPioneer_Obeta(b) + " " + csharp_GetPioneer_Ogamma(b) );
+                //Console.WriteLine(csharp_GetPingTime(b));
             }
             
         }

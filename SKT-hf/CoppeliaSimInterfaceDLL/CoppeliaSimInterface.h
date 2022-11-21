@@ -13,8 +13,9 @@ public:
 	int leftMotorHandle, rightMotorHandle;
 
 	int pingTime;
-	float pioneer_vx, pioneer_vy, pioneer_vz, pioneer_valpha, pioneer_vbeta, pioneer_vgamma;
+	float pioneer_vx, pioneer_vy, pioneer_vz, pioneer_valpha, pioneer_vbeta, pioneer_vgamma; //velocity and angular velocity components
 	float pioneer_v; //eredo sebesseg (halado mozgas)
+	float pioneer_Oalpha, pioneer_Obeta, pioneer_Ogamma; //orientation components (Euler-angle)
 	
 public:
 	CoppeliaSimInterface(int portnb);
@@ -54,5 +55,12 @@ extern "C" __declspec(dllexport) float csharp_GetPioneer_v(CoppeliaSimInterface 
 extern "C" __declspec(dllexport) int csharp_GetPingTime(CoppeliaSimInterface * a) {
 	return a->pingTime;
 }
-
-
+extern "C" __declspec(dllexport) float csharp_GetPioneer_Oalpha(CoppeliaSimInterface * a) {
+	return a->pioneer_Oalpha;
+}
+extern "C" __declspec(dllexport) float csharp_GetPioneer_Obeta(CoppeliaSimInterface * a) {
+	return a->pioneer_Obeta;
+}
+extern "C" __declspec(dllexport) float csharp_GetPioneer_Ogamma(CoppeliaSimInterface * a) {
+	return a->pioneer_Ogamma;
+}

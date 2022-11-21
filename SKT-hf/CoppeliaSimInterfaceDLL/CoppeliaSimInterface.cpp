@@ -69,6 +69,7 @@ void CoppeliaSimInterface::SimIteration()
 	float tempLin[3];
 	float tempAng[3];
 	int pingTime;
+	float tempOri[3];
 	simxSynchronousTrigger(clientID); //Next step of simulation
 	simxGetPingTime(clientID, &pingTime); //Ensure that the step is over
 	this->pingTime = pingTime;
@@ -80,6 +81,11 @@ void CoppeliaSimInterface::SimIteration()
 	pioneer_vbeta = tempAng[1];
 	pioneer_vgamma = tempAng[2];
 	pioneer_v = sqrt(pioneer_vx*pioneer_vx + pioneer_vy*pioneer_vy + pioneer_vz*pioneer_vz);
+	simxGetObjectOrientation(clientID, pioneerHandle, -1, &tempOri[0], simx_opmode_blocking);
+	pioneer_Oalpha = tempOri[0];
+	pioneer_Obeta = tempOri[1];
+	pioneer_Ogamma = tempOri[2];
+
 	//Sleep(100);
 	return;
 }
