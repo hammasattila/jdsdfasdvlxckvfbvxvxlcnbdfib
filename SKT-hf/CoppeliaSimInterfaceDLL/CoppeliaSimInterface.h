@@ -25,6 +25,9 @@ public:
 	void ReleasePioneerControl();
 	void SetPioneer_vleftmotor(float v);
 	void SetPioneer_vrightmotor(float v);
+	void StopSimulation();
+	void PauseSimulation();
+	void StartSimulation();
 };
 
 extern "C" __declspec(dllexport) void* csharp_CoppeliaSimInterface(int portnb) {
@@ -79,5 +82,17 @@ extern "C" __declspec(dllexport) void csharp_SetPioneer_vleftmotor(CoppeliaSimIn
 }
 extern "C" __declspec(dllexport) void csharp_SetPioneer_vrightmotor(CoppeliaSimInterface * a, float v) {
 	a->SetPioneer_vrightmotor(v);
+	return;
+}
+extern "C" __declspec(dllexport) void csharp_StopSimulation(CoppeliaSimInterface * a) {
+	a->StopSimulation();
+	return;
+}
+extern "C" __declspec(dllexport) void csharp_PauseSimulation(CoppeliaSimInterface * a) {
+	a->PauseSimulation();
+	return;
+}
+extern "C" __declspec(dllexport) void csharp_StartSimulation(CoppeliaSimInterface * a) {
+	a->StartSimulation();
 	return;
 }

@@ -53,7 +53,7 @@ CoppeliaSimInterface::CoppeliaSimInterface(int portnb)
 
 
 	simxSynchronous(clientID, true); //turn on stepped mode
-	simxStartSimulation(clientID, simx_opmode_blocking); //Starting simulation
+	//simxStartSimulation(clientID, simx_opmode_blocking); //Starting simulation
 }
 
 void CoppeliaSimInterface::dw(std::string text)
@@ -110,3 +110,17 @@ void CoppeliaSimInterface::SetPioneer_vrightmotor(float v)
 {
 	simxSetJointTargetVelocity(clientID, rightMotorHandle, v, simx_opmode_oneshot);
 }
+
+void CoppeliaSimInterface::StopSimulation()
+{
+	simxStopSimulation(clientID, simx_opmode_blocking);
+}
+void CoppeliaSimInterface::PauseSimulation()
+{
+	simxPauseSimulation(clientID, simx_opmode_blocking);
+}
+void CoppeliaSimInterface::StartSimulation()
+{
+	simxStartSimulation(clientID, simx_opmode_blocking);
+}
+

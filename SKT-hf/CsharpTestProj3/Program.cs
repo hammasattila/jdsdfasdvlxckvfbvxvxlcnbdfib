@@ -66,6 +66,15 @@ namespace CsharpTestProj3
         [DllImport("CoppeliaSimInterfaceDLL.dll")]
         public static extern void csharp_SetPioneer_vrightmotor(IntPtr a, float v);
 
+        //Stopping, Pausing and Starting Simulation
+        [DllImport("CoppeliaSimInterfaceDLL.dll")]
+        public static extern void csharp_StopSimulation(IntPtr a);
+
+        [DllImport("CoppeliaSimInterfaceDLL.dll")]
+        public static extern void csharp_PauseSimulation(IntPtr a);
+
+        [DllImport("CoppeliaSimInterfaceDLL.dll")]
+        public static extern void csharp_StartSimulation(IntPtr a);
 
 
 
@@ -73,6 +82,7 @@ namespace CsharpTestProj3
         static void Main(string[] args)
         {
             IntPtr b = csharp_CoppeliaSimInterface(19997);
+            csharp_StartSimulation(b);
             
             for (int i = 0;i<50;i++)
             {
@@ -82,7 +92,7 @@ namespace CsharpTestProj3
             csharp_GetPioneerControl(b);
             csharp_SetPioneer_vleftmotor(b, 4);
             csharp_SetPioneer_vrightmotor(b, 4);
-            Console.WriteLine("Pioneer control---------------------------------------------");
+            Console.WriteLine("Pioneer control taken over.. ---------------------------------------------");
             for (int i = 0; i < 20; i++)
             {
                 csharp_SimIteration(b);
@@ -95,6 +105,9 @@ namespace CsharpTestProj3
                 csharp_SimIteration(b);
                 Console.WriteLine(csharp_GetPioneer_v(b) + " " + csharp_GetPioneer_Oalpha(b) + " " + csharp_GetPioneer_Obeta(b) + " " + csharp_GetPioneer_Ogamma(b));
             }
+
+            csharp_StopSimulation(b);
+            Console.WriteLine("Simulation stopped.");
         }
     }
 }
