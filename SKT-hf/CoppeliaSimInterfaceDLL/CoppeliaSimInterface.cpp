@@ -90,3 +90,23 @@ void CoppeliaSimInterface::SimIteration()
 	return;
 }
 
+void CoppeliaSimInterface::GetPioneerControl()
+{
+	//taking over control of Pioneer
+	simxSetInt32Signal(clientID, "controlledByUser", 1, simx_opmode_blocking);
+	simxSetJointTargetVelocity(clientID, leftMotorHandle, 0.0f, simx_opmode_oneshot);
+	simxSetJointTargetVelocity(clientID, rightMotorHandle, 0.0f, simx_opmode_oneshot);
+}
+void CoppeliaSimInterface::ReleasePioneerControl()
+{
+	simxSetInt32Signal(clientID, "controlledByUser", 0, simx_opmode_blocking);
+}
+
+void CoppeliaSimInterface::SetPioneer_vleftmotor(float v)
+{
+	simxSetJointTargetVelocity(clientID, leftMotorHandle, v, simx_opmode_oneshot);
+}
+void CoppeliaSimInterface::SetPioneer_vrightmotor(float v)
+{
+	simxSetJointTargetVelocity(clientID, rightMotorHandle, v, simx_opmode_oneshot);
+}

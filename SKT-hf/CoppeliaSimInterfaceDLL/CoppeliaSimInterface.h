@@ -21,7 +21,10 @@ public:
 	CoppeliaSimInterface(int portnb);
 	static void dw(std::string text);
 	void SimIteration();
-	
+	void GetPioneerControl();
+	void ReleasePioneerControl();
+	void SetPioneer_vleftmotor(float v);
+	void SetPioneer_vrightmotor(float v);
 };
 
 extern "C" __declspec(dllexport) void* csharp_CoppeliaSimInterface(int portnb) {
@@ -63,4 +66,18 @@ extern "C" __declspec(dllexport) float csharp_GetPioneer_Obeta(CoppeliaSimInterf
 }
 extern "C" __declspec(dllexport) float csharp_GetPioneer_Ogamma(CoppeliaSimInterface * a) {
 	return a->pioneer_Ogamma;
+}
+extern "C" __declspec(dllexport) void csharp_GetPioneerControl(CoppeliaSimInterface * a) {
+	return a->GetPioneerControl();
+}
+extern "C" __declspec(dllexport) void csharp_ReleasePioneerControl(CoppeliaSimInterface * a) {
+	return a->ReleasePioneerControl();
+}
+extern "C" __declspec(dllexport) void csharp_SetPioneer_vleftmotor(CoppeliaSimInterface * a, float v) {
+	a->SetPioneer_vleftmotor(v);
+	return;
+}
+extern "C" __declspec(dllexport) void csharp_SetPioneer_vrightmotor(CoppeliaSimInterface * a, float v) {
+	a->SetPioneer_vrightmotor(v);
+	return;
 }
