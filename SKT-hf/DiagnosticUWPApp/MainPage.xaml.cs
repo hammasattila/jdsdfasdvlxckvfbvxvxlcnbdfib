@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DiagnosticUWPApp.Model;
+using DiagnosticUWPApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,23 @@ namespace DiagnosticUWPApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        //SimSkeleton simSkeleton;
+
+        SimViewModel ViewModel;
+
+        StartStopSimCommand StartStopSimCommand;
+
+        ToggleManualControlCommand ToggleManualControlCommand;
+
         public MainPage()
         {
             this.InitializeComponent();
+            
+            //simSkeleton = new SimSkeleton(19997);
+
+            ViewModel = new SimViewModel();
+            StartStopSimCommand = new StartStopSimCommand(ViewModel);
+            ToggleManualControlCommand = new ToggleManualControlCommand(ViewModel);
         }
     }
 }

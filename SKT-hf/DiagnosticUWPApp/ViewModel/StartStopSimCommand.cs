@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiagnosticUWPApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +20,14 @@ namespace DiagnosticUWPApp.ViewModel
 
         public override void Execute(object parameter)
         {
-            if (this.vm.SimIsRunning == false)
+            /*if (this.vm.SimIsRunning == false)
             {
-                //TODO: DLL-ben lévő függvényt meghívva szimuláció elindítása
+                SimSkeleton.csharp_StartSimulation(SimSkeleton.Simulation);
             }
             else
             {
-                //TODO: DLL-ben lévő függvényt meghívva szimuláció leállítása
-            }
+                SimSkeleton.csharp_StopSimulation(SimSkeleton.Simulation);
+            }*/
 
             vm.SimIsRunning = !vm.SimIsRunning;
         }

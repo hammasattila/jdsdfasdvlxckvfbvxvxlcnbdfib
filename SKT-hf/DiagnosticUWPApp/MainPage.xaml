@@ -5,10 +5,18 @@
     xmlns:local="using:DiagnosticUWPApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:v="using:DiagnosticUWPApp.View"
+    xmlns:vm="using:DiagnosticUWPApp.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Page.Resources>
+        <v:SimIsRunning2BrushConverter x:Key="SimIsRunning2BrushConverter"/>
+        <v:IsManualControl2BrushConverter x:Key="IsManualControl2BrushConverter"/>
+    </Page.Resources>
 
-    </Grid>
+    <StackPanel Orientation="Horizontal">
+        <Button Content="Start/Stop" 
+                Background="{x:Bind ViewModel.SimIsRunning, Mode=OneWay, Converter={StaticResource SimIsRunning2BrushConverter}}"/>
+    </StackPanel>
 </Page>

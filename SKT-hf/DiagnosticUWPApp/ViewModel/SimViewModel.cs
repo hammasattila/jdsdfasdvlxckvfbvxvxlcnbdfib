@@ -13,9 +13,9 @@ namespace DiagnosticUWPApp.ViewModel
     {
         public readonly SimModel Model;
 
-        public SimViewModel (SimModel model)
+        public SimViewModel ()
         {
-            this.Model = model;
+            this.Model = new SimModel();
             Model.PropertyChanged += Model_PropertyChanged;
         }
         public double Velocity { get => Model.Velocity; }
@@ -28,6 +28,7 @@ namespace DiagnosticUWPApp.ViewModel
             set
             {
                 Model.SimIsRunning = value;
+                Model.PropertyChanged += Model_PropertyChanged;
             }
         }
 
@@ -37,6 +38,7 @@ namespace DiagnosticUWPApp.ViewModel
             set
             {
                 Model.IsManualControl = value;
+                Model.PropertyChanged += Model_PropertyChanged;
             }
         }
 
