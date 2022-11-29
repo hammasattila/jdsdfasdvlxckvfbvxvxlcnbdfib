@@ -16,7 +16,7 @@
     </Page.Resources>
 
     <StackPanel Orientation="Horizontal">
-        <Button Content="Start/Stop" 
+        <Button Content="Start/Stop" Command="{x:Bind StartStopSimCommand, Mode=OneWay}"
                 Background="{x:Bind ViewModel.SimIsRunning, Mode=OneWay, Converter={StaticResource SimIsRunning2BrushConverter}}"/>
     </StackPanel>
 </Page>

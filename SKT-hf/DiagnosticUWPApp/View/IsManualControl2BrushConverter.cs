@@ -13,7 +13,10 @@ namespace DiagnosticUWPApp.View
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return brushes[(int)value];
+            if ((bool)value)
+                return brushes[1];
+            else
+                return brushes[0];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
