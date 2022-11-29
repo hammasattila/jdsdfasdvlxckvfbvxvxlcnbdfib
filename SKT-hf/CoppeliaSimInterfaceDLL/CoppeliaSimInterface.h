@@ -1,6 +1,6 @@
 #pragma once
 
-#define DEBUG_MODE_ON_KONCZ
+//#define DEBUG_MODE_ON_KONCZ
 #include <iostream>
 #include <string>
 
