@@ -21,14 +21,14 @@ namespace DiagnosticUWPApp.ViewModel
 
         public override void Execute(object parameter)
         {
-            /*if (vm.IsManualControl == false)
+            if (vm.IsManualControl == false)
             {
                 SimSkeleton.csharp_GetPioneerControl(SimSkeleton.Simulation);
             }
             else
             {
                 SimSkeleton.csharp_ReleasePioneerControl(SimSkeleton.Simulation);
-            }*/
+            }
 
             vm.IsManualControl = !vm.IsManualControl;
         }

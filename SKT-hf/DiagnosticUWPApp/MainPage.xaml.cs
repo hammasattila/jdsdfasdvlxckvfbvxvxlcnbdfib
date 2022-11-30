@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Runtime.InteropServices;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -24,8 +25,8 @@ namespace DiagnosticUWPApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        //SimSkeleton simSkeleton;
-
+        SimSkeleton simSkeleton;
+        
         SimViewModel ViewModel;
 
         StartStopSimCommand StartStopSimCommand;
@@ -35,8 +36,8 @@ namespace DiagnosticUWPApp
         public MainPage()
         {
             this.InitializeComponent();
-            
-            //simSkeleton = new SimSkeleton(19997);
+
+            simSkeleton = new SimSkeleton(19997);
 
             ViewModel = new SimViewModel();
             StartStopSimCommand = new StartStopSimCommand(ViewModel);

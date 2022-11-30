@@ -20,14 +20,14 @@ namespace DiagnosticUWPApp.ViewModel
 
         public override void Execute(object parameter)
         {
-            /*if (this.vm.SimIsRunning == false)
+            if (this.vm.SimIsRunning == false)
             {
                 SimSkeleton.csharp_StartSimulation(SimSkeleton.Simulation);
             }
             else
             {
                 SimSkeleton.csharp_StopSimulation(SimSkeleton.Simulation);
-            }*/
+            }
 
             vm.SimIsRunning = !vm.SimIsRunning;
         }
