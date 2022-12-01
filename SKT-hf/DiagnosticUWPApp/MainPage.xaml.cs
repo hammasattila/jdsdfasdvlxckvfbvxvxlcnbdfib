@@ -37,11 +37,11 @@ namespace DiagnosticUWPApp
         {
             this.InitializeComponent();
 
-            simSkeleton = new SimSkeleton(19997);
-
             ViewModel = new SimViewModel();
             StartStopSimCommand = new StartStopSimCommand(ViewModel);
             ToggleManualControlCommand = new ToggleManualControlCommand(ViewModel);
+
+            simSkeleton = new SimSkeleton(19997);
         }
     }
 }

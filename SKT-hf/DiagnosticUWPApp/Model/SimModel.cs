@@ -8,9 +8,9 @@ namespace DiagnosticUWPApp.Model
 {
     public class SimModel : ObservableObject
     {
-        private double velocity;
+        private float velocity;
 
-        public double Velocity
+        public float Velocity
         {
             get => velocity;
             set
@@ -23,9 +23,9 @@ namespace DiagnosticUWPApp.Model
             }
         }
 
-        private double orientation;
+        private float orientation;
 
-        public double Orientation
+        public float Orientation
         {
             get => orientation;
             set

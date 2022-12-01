@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DiagnosticUWPApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -11,13 +12,59 @@ namespace DiagnosticUWPApp.Model
     {
         public static IntPtr Simulation;
 
-        [DllImport("CoppeliaSimInterfaceDLL.dll")]
-        public static extern IntPtr csharp_CoppeliaSimInterface(int portnb);
-
         public SimSkeleton(int portNumber)
         {
             Simulation = csharp_CoppeliaSimInterface(portNumber);
         }
+
+        public static void StartSimulation()
+        {
+            csharp_StartSimulation(Simulation);
+        }
+
+        public static void StopSimulation()
+        {
+            csharp_StopSimulation(Simulation);
+        }
+
+        public static void SimIteration()
+        {
+            csharp_SimIteration(Simulation);
+        }
+
+        public static void GetControl()
+        {
+            csharp_GetPioneerControl(Simulation);
+        }
+
+        public static void ReleaseControl()
+        {
+            csharp_ReleasePioneerControl(Simulation);
+        }
+
+        public static float GetVelocity()
+        {
+            return csharp_GetPioneer_v(Simulation);
+        }
+
+        public static float GetOrientation()
+        {
+            return csharp_GetPioneer_Ogamma(Simulation);
+        }
+
+        public static int GetPingTime()
+        {
+            return csharp_GetPingTime(Simulation);
+        }
+
+        public static void SetWheelSpeed(float leftWheelSpeed, float rightWheelSpeed)
+        {
+            csharp_SetPioneer_vleftmotor(Simulation, leftWheelSpeed);
+            csharp_SetPioneer_vrightmotor(Simulation, rightWheelSpeed);
+        }
+
+        [DllImport("CoppeliaSimInterfaceDLL.dll")]
+        public static extern IntPtr csharp_CoppeliaSimInterface(int portnb);
 
         [DllImport("CoppeliaSimInterfaceDLL.dll")]
         public static extern void csharp_SimIteration(IntPtr a);
@@ -80,6 +127,5 @@ namespace DiagnosticUWPApp.Model
 
         [DllImport("CoppeliaSimInterfaceDLL.dll")]
         public static extern void csharp_StartSimulation(IntPtr a);
-
     }
 }

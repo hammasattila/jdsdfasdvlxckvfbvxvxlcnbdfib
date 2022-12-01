@@ -18,9 +18,25 @@ namespace DiagnosticUWPApp.ViewModel
             this.Model = new SimModel();
             Model.PropertyChanged += Model_PropertyChanged;
         }
-        public double Velocity { get => Model.Velocity; }
+        public float Velocity 
+        { 
+            get => Model.Velocity;
+            set
+            {
+                Model.Velocity = value;
+                Model.PropertyChanged += Model_PropertyChanged;
+            }
+        }
 
-        public double Orientation { get => Model.Orientation; }
+        public float Orientation 
+        {
+            get => Model.Orientation;
+            set
+            {
+                Model.Orientation = value;
+                Model.PropertyChanged += Model_PropertyChanged;
+            }
+        }
 
         public bool SimIsRunning
         { 
@@ -50,6 +66,13 @@ namespace DiagnosticUWPApp.ViewModel
         {
             if (propertyNames.Contains(e.PropertyName))
                 Notify(e.PropertyName);
+        }
+
+        public void IterateSimulation()
+        {
+            SimSkeleton.SimIteration();
+            Velocity = SimSkeleton.GetVelocity();
+            Orientation = SimSkeleton.GetOrientation();
         }
     }
 }
