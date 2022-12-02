@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:v="using:DiagnosticUWPApp.View"
     xmlns:vm="using:DiagnosticUWPApp.ViewModel"
+    xmlns:ucv="using:DiagnosticUWPApp.View.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -18,5 +19,6 @@
     <StackPanel Orientation="Horizontal">
         <Button Content="Start/Stop" Command="{x:Bind StartStopSimCommand, Mode=OneWay}"
                 Background="{x:Bind ViewModel.SimIsRunning, Mode=OneWay, Converter={StaticResource SimIsRunning2BrushConverter}}"/>
+        <ucv:RobotViewUserControl />
     </StackPanel>
 </Page>

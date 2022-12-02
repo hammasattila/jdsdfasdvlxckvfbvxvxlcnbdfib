@@ -41,7 +41,7 @@ namespace DiagnosticUWPApp
             StartStopSimCommand = new StartStopSimCommand(ViewModel);
             ToggleManualControlCommand = new ToggleManualControlCommand(ViewModel);
 
-            simSkeleton = new SimSkeleton(19997);
+            //simSkeleton = new SimSkeleton(19997);
         }
     }
 }
