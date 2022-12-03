@@ -67,12 +67,5 @@ namespace DiagnosticUWPApp.ViewModel
             if (propertyNames.Contains(e.PropertyName))
                 Notify(e.PropertyName);
         }
-
-        public void IterateSimulation()
-        {
-            SimSkeleton.SimIteration();
-            Velocity = SimSkeleton.GetVelocity();
-            Orientation = SimSkeleton.GetOrientation();
-        }
     }
 }

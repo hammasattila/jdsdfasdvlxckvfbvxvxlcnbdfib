@@ -15,33 +15,57 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Runtime.InteropServices;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+using System.Threading.Tasks;
+using System.Threading;
+using Windows.ApplicationModel.UserDataTasks;
+using Windows.UI.Core;
 
 namespace DiagnosticUWPApp
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class MainPage : Page
     {
         SimSkeleton simSkeleton;
         
-        SimViewModel ViewModel;
+        SimViewModel viewModel;
 
-        StartStopSimCommand StartStopSimCommand;
+        StartStopSimCommand startStopSimCommand;
 
-        ToggleManualControlCommand ToggleManualControlCommand;
+        ToggleManualControlCommand toggleManualControlCommand;
+
+        Task simulationTask;
+
+        private async void storeData()
+        {
+            (viewModel.Velocity, viewModel.Orientation, _) = SimSkeleton.GetData();
+        }
+
+        private async void runSimulation()
+        {
+            while(true)
+                if (viewModel.SimIsRunning)
+                {
+                    SimSkeleton.SimIteration();
+                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,() =>
+                        {
+                            storeData();
+                        }
+                    ).AsTask();
+                }
+        }
 
         public MainPage()
         {
             this.InitializeComponent();
 
-            ViewModel = new SimViewModel();
-            StartStopSimCommand = new StartStopSimCommand(ViewModel);
-            ToggleManualControlCommand = new ToggleManualControlCommand(ViewModel);
+            viewModel = new SimViewModel();
+            startStopSimCommand = new StartStopSimCommand(viewModel);
+            toggleManualControlCommand = new ToggleManualControlCommand(viewModel);
 
             simSkeleton = new SimSkeleton(19997);
+
+            simulationTask = new Task(runSimulation);
+            simulationTask.Start();
         }
     }
 }

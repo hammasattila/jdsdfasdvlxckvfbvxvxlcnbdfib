@@ -2,6 +2,7 @@
 using DiagnosticUWPApp.View;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -17,20 +18,24 @@ namespace DiagnosticUWPApp.ViewModel
             this.vm = vm;
         }
 
-        public override bool CanExecute(object parameter) => vm.SimIsRunning;
+        public override bool CanExecute(object parameter) => true;
 
         public override void Execute(object parameter)
         {
-            if (vm.IsManualControl == false)
+            if (vm.SimIsRunning)
             {
-                SimSkeleton.csharp_GetPioneerControl(SimSkeleton.Simulation);
-            }
-            else
-            {
-                SimSkeleton.csharp_ReleasePioneerControl(SimSkeleton.Simulation);
-            }
+                if (vm.IsManualControl == false)
+                {
+                    SimSkeleton.GetControl();
+                    SimSkeleton.SetWheelSpeed(0, 0);
+                }
+                else
+                {
+                    SimSkeleton.ReleaseControl();
+                }
 
-            vm.IsManualControl = !vm.IsManualControl;
+                vm.IsManualControl = !vm.IsManualControl;
+            }
         }
     }
 }
