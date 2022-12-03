@@ -8,8 +8,8 @@ namespace DiagnosticUWPApp.View
     public class IsManualControl2BrushConverter : IValueConverter
     {
         readonly private static SolidColorBrush gray = new SolidColorBrush(Colors.LightGray);
-        readonly private static SolidColorBrush red = new SolidColorBrush(Colors.Red);
-        readonly private static SolidColorBrush[] brushes = new[] { gray, red };
+        readonly private static SolidColorBrush blue = new SolidColorBrush(Colors.LightBlue);
+        readonly private static SolidColorBrush[] brushes = new[] { gray, blue };
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {

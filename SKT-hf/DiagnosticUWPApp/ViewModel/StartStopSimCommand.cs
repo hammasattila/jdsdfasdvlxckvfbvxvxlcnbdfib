@@ -1,6 +1,7 @@
 ﻿using DiagnosticUWPApp.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,13 +21,13 @@ namespace DiagnosticUWPApp.ViewModel
 
         public override void Execute(object parameter)
         {
-            if (this.vm.SimIsRunning == false)
+            if (vm.SimIsRunning == false)
             {
-                SimSkeleton.csharp_StartSimulation(SimSkeleton.Simulation);
+                SimSkeleton.StartSimulation();
             }
             else
             {
-                SimSkeleton.csharp_StopSimulation(SimSkeleton.Simulation);
+                SimSkeleton.StopSimulation();
             }
 
             vm.SimIsRunning = !vm.SimIsRunning;

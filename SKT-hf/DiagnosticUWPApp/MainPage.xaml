@@ -1,4 +1,4 @@
-﻿<Page
+<Page
     x:Class="DiagnosticUWPApp.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -17,8 +17,14 @@
     </Page.Resources>
 
     <StackPanel Orientation="Horizontal">
-        <Button Content="Start/Stop" Command="{x:Bind StartStopSimCommand, Mode=OneWay}"
-                Background="{x:Bind ViewModel.SimIsRunning, Mode=OneWay, Converter={StaticResource SimIsRunning2BrushConverter}}"/>
+        <Button Content="Start/Stop" Command="{x:Bind startStopSimCommand, Mode=OneWay}"
+                Background="{x:Bind viewModel.SimIsRunning, Mode=OneWay, Converter={StaticResource SimIsRunning2BrushConverter}}"/>
+        <Button Content="Manual Control" Command="{x:Bind toggleManualControlCommand, Mode=OneWay}"
+                Background="{x:Bind viewModel.IsManualControl, Mode=OneWay, Converter={StaticResource IsManualControl2BrushConverter}}"/>
+        <TextBlock Text="Velocity:" Height="31"/>
+        <TextBox Text="{x:Bind viewModel.Velocity, Mode=OneWay}" Height="31" Width="142"/>
+        <TextBlock Text="Orientation:" Height="31"/>
+        <TextBox Text="{x:Bind viewModel.Orientation, Mode=OneWay}" Height="31" Width="142"/>
         <ucv:RobotViewUserControl />
     </StackPanel>
 </Page>
