@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="CoppeliaSimInterfaceDLL, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Release\CoppeliaSimInterfaceDLL.dll</HintPath>
+      <HintPath>..\Debug\CoppeliaSimInterfaceDLL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

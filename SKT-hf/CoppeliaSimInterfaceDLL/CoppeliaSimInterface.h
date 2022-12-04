@@ -1,6 +1,6 @@
 #pragma once
 
-//#define DEBUG_MODE_ON_KONCZ
+#define DEBUG_MODE_ON_KONCZ
 #include <iostream>
 #include <string>
 
@@ -11,11 +11,13 @@ public:
 	int clientID;
 	int pioneerHandle;
 	int leftMotorHandle, rightMotorHandle;
+	int sensorHandles[16];
 
 	int pingTime;
 	float pioneer_vx, pioneer_vy, pioneer_vz, pioneer_valpha, pioneer_vbeta, pioneer_vgamma; //velocity and angular velocity components
 	float pioneer_v; //eredo sebesseg (halado mozgas)
 	float pioneer_Oalpha, pioneer_Obeta, pioneer_Ogamma; //orientation components (Euler-angle)
+	float sensorVisualizer[16]; //contains the sensors' distance value if detection occurs, 1m else
 	
 public:
 	CoppeliaSimInterface(int portnb);
@@ -95,4 +97,7 @@ extern "C" __declspec(dllexport) void csharp_PauseSimulation(CoppeliaSimInterfac
 extern "C" __declspec(dllexport) void csharp_StartSimulation(CoppeliaSimInterface * a) {
 	a->StartSimulation();
 	return;
+}
+extern "C" __declspec(dllexport) float csharp_GetSensorVisualizerValue(CoppeliaSimInterface * a, int sensorNb) {
+	return a->sensorVisualizer[sensorNb];
 }

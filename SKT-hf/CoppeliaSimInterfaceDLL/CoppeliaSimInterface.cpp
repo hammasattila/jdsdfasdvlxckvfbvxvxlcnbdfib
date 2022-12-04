@@ -50,12 +50,30 @@ CoppeliaSimInterface::CoppeliaSimInterface(int portnb)
 		dw("Left Motor Handle kesz.");
 	}
 
+	//...ultrasonic sensor handles
+	for (int i = 0; i < 16; i++)
+	{
+		char sensorName[33] = "Pioneer_p3dx_ultrasonicSensor";
+		char strI[2];
+		sprintf(strI, "%d", i+1); //a deprecated nevek nem 0-tol, hanem 1-tol vannak szamozva!!!
+		strcat(sensorName, strI);
+		int sensorHandleVar;
+		if (simxGetObjectHandle(clientID, sensorName, (simxInt*)&sensorHandleVar, simx_opmode_blocking) != 0) {
+			dw("Could not retreive handle of Pioneer Ultrasonic Sensor.");
+			extApi_sleepMs(5000);
+		}
+		else {
+			this->sensorHandles[i] = sensorHandleVar;
+			dw("Ultrasonic Sensor Handle kesz.");
+		}
+	}
 
 
 	simxSynchronous(clientID, true); //turn on stepped mode
 	//simxStartSimulation(clientID, simx_opmode_blocking); //Starting simulation
 }
 
+//gyors konzol kiiras debug modban
 void CoppeliaSimInterface::dw(std::string text)
 {
 #ifdef DEBUG_MODE_ON_KONCZ
@@ -86,6 +104,22 @@ void CoppeliaSimInterface::SimIteration()
 	pioneer_Obeta = tempOri[1];
 	pioneer_Ogamma = tempOri[2];
 
+	//proximity sensors' data for Hammas Atti's visualization
+	for (int i = 0; i < 16; i++)
+	{
+		simxUChar detectionState;
+		float detectedPoint[3];
+		simxReadProximitySensor(clientID, sensorHandles[i], &detectionState, &detectedPoint[0], NULL, NULL, simx_opmode_blocking);
+		if (detectionState == 1)
+		{
+			this->sensorVisualizer[i] = sqrt(detectedPoint[0] * detectedPoint[0] + detectedPoint[1] * detectedPoint[1] + detectedPoint[2] * detectedPoint[2]);
+				
+		}
+		else
+		{
+			this->sensorVisualizer[i] = 1;
+		}
+	}
 	//Sleep(100);
 	return;
 }

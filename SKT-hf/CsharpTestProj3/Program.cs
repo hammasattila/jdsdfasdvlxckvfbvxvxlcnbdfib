@@ -76,6 +76,9 @@ namespace CsharpTestProj3
         [DllImport("CoppeliaSimInterfaceDLL.dll")]
         public static extern void csharp_StartSimulation(IntPtr a);
 
+        //Pioneer robot proximity szenzor ertekei (szenzorok szamozasa 0...15):
+        [DllImport("CoppeliaSimInterfaceDLL.dll")]
+        public static extern float csharp_GetSensorVisualizerValue(IntPtr a, int sensorNb);
 
 
 
@@ -87,7 +90,7 @@ namespace CsharpTestProj3
             for (int i = 0;i<50;i++)
             {
                 csharp_SimIteration(b);
-                Console.WriteLine(csharp_GetPioneer_v(b) + " " + csharp_GetPioneer_Oalpha(b) + " " + csharp_GetPioneer_Obeta(b) + " " + csharp_GetPioneer_Ogamma(b) );
+                Console.WriteLine(csharp_GetPioneer_v(b) + " " + csharp_GetPioneer_Oalpha(b) + " " + csharp_GetPioneer_Obeta(b) + " " + csharp_GetPioneer_Ogamma(b) + " Sensor4 data:" + csharp_GetSensorVisualizerValue(b, 4));
             }
             csharp_GetPioneerControl(b);
             csharp_SetPioneer_vleftmotor(b, 4);
@@ -96,14 +99,14 @@ namespace CsharpTestProj3
             for (int i = 0; i < 20; i++)
             {
                 csharp_SimIteration(b);
-                Console.WriteLine(csharp_GetPioneer_v(b) + " " + csharp_GetPioneer_Oalpha(b) + " " + csharp_GetPioneer_Obeta(b) + " " + csharp_GetPioneer_Ogamma(b));
+                Console.WriteLine(csharp_GetPioneer_v(b) + " " + csharp_GetPioneer_Oalpha(b) + " " + csharp_GetPioneer_Obeta(b) + " " + csharp_GetPioneer_Ogamma(b) + " Sensor4 data:" + csharp_GetSensorVisualizerValue(b, 4));
             }
             csharp_ReleasePioneerControl(b);
             Console.WriteLine("Pioneer control released.. -----------------------------");
             for (int i = 0; i < 50; i++)
             {
                 csharp_SimIteration(b);
-                Console.WriteLine(csharp_GetPioneer_v(b) + " " + csharp_GetPioneer_Oalpha(b) + " " + csharp_GetPioneer_Obeta(b) + " " + csharp_GetPioneer_Ogamma(b));
+                Console.WriteLine(csharp_GetPioneer_v(b) + " " + csharp_GetPioneer_Oalpha(b) + " " + csharp_GetPioneer_Obeta(b) + " " + csharp_GetPioneer_Ogamma(b) + " Sensor4 data:" + csharp_GetSensorVisualizerValue(b, 4));
             }
 
             csharp_StopSimulation(b);
