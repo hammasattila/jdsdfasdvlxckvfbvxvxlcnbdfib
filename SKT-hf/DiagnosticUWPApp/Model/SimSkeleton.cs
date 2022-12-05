@@ -64,21 +64,17 @@ namespace DiagnosticUWPApp.Model
         {
             float v, o;
             int p;
-            lock (syncObject)
-            {
-                v = csharp_GetPioneer_v(Simulation);
-                o = csharp_GetPioneer_Ogamma(Simulation);
-                p = csharp_GetPingTime(Simulation);
-            }
+            
+            v = csharp_GetPioneer_v(Simulation);
+            o = csharp_GetPioneer_Ogamma(Simulation);
+            p = csharp_GetPingTime(Simulation);
+
             return (v, o, p);
         }
 
         public static float GetSensorData(int sensorNb)
         {
-            lock (syncObject)
-            {
-                return csharp_GetSensorVisualizerValue(Simulation, sensorNb);
-            }
+            return csharp_GetSensorVisualizerValue(Simulation, sensorNb);
         }
 
         public static void SetWheelSpeed(float leftWheelSpeed, float rightWheelSpeed)
