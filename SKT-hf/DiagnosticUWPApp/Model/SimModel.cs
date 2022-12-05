@@ -67,5 +67,26 @@ namespace DiagnosticUWPApp.Model
                 }
             }
         }
+
+        private float[] sensorData;
+
+        public float GetSensorData(int i)
+        {
+            return sensorData[i];
+        }
+
+        public void SetSensorData(int i, float value)
+        {
+            if (sensorData[i] != value)
+            {
+                sensorData[i] = value;
+                Notify("sensorData");
+            }
+        }
+
+        public SimModel()
+        {
+            sensorData = new float[16];
+        }
     }
 }

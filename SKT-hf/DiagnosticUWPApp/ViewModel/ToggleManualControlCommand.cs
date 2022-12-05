@@ -26,12 +26,16 @@ namespace DiagnosticUWPApp.ViewModel
             {
                 if (vm.IsManualControl == false)
                 {
+                    vm.SimIsRunning = false;
                     SimSkeleton.GetControl();
                     SimSkeleton.SetWheelSpeed(0, 0);
+                    vm.SimIsRunning = true;
                 }
                 else
                 {
+                    vm.SimIsRunning = false;
                     SimSkeleton.ReleaseControl();
+                    vm.SimIsRunning = true;
                 }
 
                 vm.IsManualControl = !vm.IsManualControl;

@@ -25,6 +25,6 @@
         <TextBox Text="{x:Bind viewModel.Velocity, Mode=OneWay}" Height="31" Width="142"/>
         <TextBlock Text="Orientation:" Height="31"/>
         <TextBox Text="{x:Bind viewModel.Orientation, Mode=OneWay}" Height="31" Width="142"/>
-        <ucv:RobotViewUserControl />
+        <!--<ucv:RobotViewUserControl />-->
     </StackPanel>
 </Page>

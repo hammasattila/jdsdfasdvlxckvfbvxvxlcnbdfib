@@ -73,6 +73,14 @@ namespace DiagnosticUWPApp.Model
             return (v, o, p);
         }
 
+        public static float GetSensorData(int sensorNb)
+        {
+            lock (syncObject)
+            {
+                return csharp_GetSensorVisualizerValue(Simulation, sensorNb);
+            }
+        }
+
         public static void SetWheelSpeed(float leftWheelSpeed, float rightWheelSpeed)
         {
             lock (syncObject)
@@ -122,6 +130,10 @@ namespace DiagnosticUWPApp.Model
 
         [DllImport("CoppeliaSimInterfaceDLL.dll")]
         private static extern float csharp_GetPioneer_Ogamma(IntPtr a);
+
+        //------------ Sensors -------------------------------
+        [DllImport("CoppeliaSimInterfaceDLL.dll")]
+        private static extern float csharp_GetSensorVisualizerValue(IntPtr a, int sensorNb);
 
         //------------- Getting and Releasing control of Pioneer--------------
         [DllImport("CoppeliaSimInterfaceDLL.dll")]

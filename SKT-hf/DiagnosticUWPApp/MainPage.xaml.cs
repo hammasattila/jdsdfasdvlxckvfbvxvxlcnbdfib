@@ -34,10 +34,17 @@ namespace DiagnosticUWPApp
         ToggleManualControlCommand toggleManualControlCommand;
 
         Task simulationTask;
+        Task sensorDataTask;
 
         private async void storeData()
         {
             (viewModel.Velocity, viewModel.Orientation, _) = SimSkeleton.GetData();
+        }
+
+        private async void storeSensorData()
+        {
+            for (int i = 16; i > 0; i--)
+                viewModel.SetModelSensorData((i - 1), SimSkeleton.GetSensorData(i - 1));
         }
 
         private async void runSimulation()
@@ -66,6 +73,8 @@ namespace DiagnosticUWPApp
 
             simulationTask = new Task(runSimulation);
             simulationTask.Start();
+            sensorDataTask = new Task(storeSensorData);
+            sensorDataTask.Start();
         }
     }
 }

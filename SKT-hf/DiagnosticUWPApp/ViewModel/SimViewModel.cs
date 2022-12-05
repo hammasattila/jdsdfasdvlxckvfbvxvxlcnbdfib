@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Background;
 
 namespace DiagnosticUWPApp.ViewModel
 {
@@ -57,10 +58,21 @@ namespace DiagnosticUWPApp.ViewModel
                 Model.PropertyChanged += Model_PropertyChanged;
             }
         }
+        
+        public float GetModelSensorData(int i)
+        {
+            return Model.GetSensorData(i);
+        }
+        public void SetModelSensorData(int i, float value)
+        {
+            Model.SetSensorData(i, value);
+            Model.PropertyChanged += Model_PropertyChanged;
+        }
 
         private readonly string[] propertyNames = 
             { nameof(SimModel.Velocity), nameof(SimModel.Orientation),
-            nameof(SimModel.SimIsRunning), nameof(SimModel.IsManualControl) };
+            nameof(SimModel.SimIsRunning), nameof(SimModel.IsManualControl),
+            "sensorData"};
 
         private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
