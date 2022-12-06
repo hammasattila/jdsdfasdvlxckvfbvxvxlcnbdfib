@@ -2,7 +2,7 @@
     x:Class="DiagnosticUWPApp.View.UserControls.DistanceIndicatorUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:DiagnosticUWPApp.View.UserControls"
+    xmlns:c="using:DiagnosticUWPApp.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -10,13 +10,13 @@
     d:DesignWidth="200">
 
     <UserControl.Resources>
-        <local:DistanceValue2LeftPointConverter x:Key="DistanceValue2LeftPointConverter" />
-        <local:DistanceValue2RightPointConverter x:Key="DistanceValue2RightPointConverter" />
-        <local:DistanceValue2BrushConverter x:Key="DistanceValue2BrushConverter" />
+        <c:DistanceValue2LeftPointConverter x:Key="DistanceValue2LeftPointConverter" />
+        <c:DistanceValue2RightPointConverter x:Key="DistanceValue2RightPointConverter" />
+        <c:DistanceValue2BrushConverter x:Key="DistanceValue2BrushConverter" />
     </UserControl.Resources>
 
     <Path Stroke="{ThemeResource DefaultTextForegroundThemeBrush}"
-          Fill="{x:Bind SensorValue,
+          Fill="{x:Bind ViewModel.SensorValue,
                  Mode=OneWay,
                  Converter={
                      StaticResource DistanceValue2BrushConverter
@@ -28,7 +28,7 @@
                     <PathFigure StartPoint="100,90" >
                         <PathFigure.Segments>
                             <LineSegment Point="{ 
-                                x:Bind SensorValue,
+                                x:Bind ViewModel.SensorValue,
                                 Mode=OneWay,
                                 Converter={
                                     StaticResource DistanceValue2LeftPointConverter
@@ -39,7 +39,7 @@
                                         IsLargeArc="False"
                                         SweepDirection="Clockwise"
                                         Point="{ 
-                                            x:Bind SensorValue,
+                                            x:Bind ViewModel.SensorValue,
                                             Mode=OneWay,
                                             Converter={
                                                 StaticResource DistanceValue2RightPointConverter
@@ -52,7 +52,7 @@
             </PathGeometry>
         </Path.Data>
         <Path.RenderTransform>
-            <RotateTransform CenterX="100" CenterY="100" Angle="{Binding SensorAngle, ElementName=userControl}"/>
+            <RotateTransform CenterX="100" CenterY="100" Angle="{Binding ViewModel.SensorAngle, ElementName=userControl}"/>
         </Path.RenderTransform>
     </Path>
 

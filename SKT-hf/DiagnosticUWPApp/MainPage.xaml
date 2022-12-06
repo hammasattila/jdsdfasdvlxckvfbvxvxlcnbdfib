@@ -9,6 +9,7 @@
     xmlns:vm="using:DiagnosticUWPApp.ViewModel"
     xmlns:ucv="using:DiagnosticUWPApp.View.UserControls"
     mc:Ignorable="d"
+    Loaded="Page_Loaded"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
@@ -31,6 +32,7 @@
                  Text="{x:Bind viewModel.Orientation, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="ultrasonicSensor8Data" HorizontalAlignment="Left" Margin="173,199,0,0" TextWrapping="Wrap" 
             Text="{x:Bind viewModel.ultrasonicSensors[8].Data, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
-        <!--<ucv:RobotViewUserControl />-->
+        <ucv:RobotViewUserControl DistanceSensorAngles="{x:Bind viewModel.UltrasonicSensorsOrientations, Mode=OneWay}"
+                                  DistanceSensors="{x:Bind viewModel.UltrasonicSensorValues, Mode=OneWay}" />
     </Grid>
 </Page>

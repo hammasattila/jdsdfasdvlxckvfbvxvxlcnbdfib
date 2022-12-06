@@ -120,6 +120,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\DistanceValue2LeftPointConverter.cs" />
+    <Compile Include="Converter\DistanceValue2RightPointConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -132,6 +134,9 @@
     <Compile Include="ViewModel\SensorViewModel.cs" />
     <Compile Include="ViewModel\StartStopSimCommand.cs" />
     <Compile Include="ViewModel\ToggleManualControlCommand.cs" />
+    <Compile Include="ViewModel\UserControls\DistanceIndicatorUserControlViewModel.cs" />
+    <Compile Include="Converter\DistanceValue2BrushConverter.cs" />
+    <Compile Include="ViewModel\UserControls\RobotViewUserControlViewModel.cs" />
     <Compile Include="View\IsManualControl2BrushConverter.cs" />
     <Compile Include="View\UserControls\DistanceIndicatorUserControl.xaml.cs">
       <DependentUpon>DistanceIndicatorUserControl.xaml</DependentUpon>

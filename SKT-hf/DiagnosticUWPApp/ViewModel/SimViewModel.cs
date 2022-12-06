@@ -9,6 +9,18 @@ namespace DiagnosticUWPApp.ViewModel
     {
         public readonly SimModel Model;
 
+        private static readonly double[] ultrasonicSensorOrientations = { 285, 315, 333, 351, 9, 27, 45, 75, 105, 135, 153, 171, 189, 207, 225, 255 };
+        public double[] UltrasonicSensorsOrientations => ultrasonicSensorOrientations;
+        private double[] ultrasonicSensorValues = Enumerable.Range(1, ultrasonicSensorOrientations.Length).Select(i => 0.0).ToArray();
+        public double[] UltrasonicSensorValues
+        {
+            get => ultrasonicSensorValues;
+            set
+            {
+                ultrasonicSensorValues = value;
+                Notify(nameof(UltrasonicSensorValues));
+            }
+        }
         public ObservableCollection<SensorViewModel> ultrasonicSensors { get; set; }
 
         public SimViewModel ()

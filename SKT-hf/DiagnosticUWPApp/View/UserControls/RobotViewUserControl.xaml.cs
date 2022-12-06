@@ -1,7 +1,10 @@
 ﻿using DiagnosticUWPApp.Model;
+using DiagnosticUWPApp.ViewModel;
+using DiagnosticUWPApp.ViewModel.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -40,45 +43,19 @@ namespace DiagnosticUWPApp.View.UserControls
 
     public sealed partial class RobotViewUserControl : UserControl
     {
-        private ObservableCollection<DistanceSensorIndicator> distanceSensorIndicators = new ObservableCollection<DistanceSensorIndicator>();
-        public ObservableCollection<DistanceSensorIndicator> DistanceSensorIndicators => distanceSensorIndicators;
+        private RobotViewUserControlViewModel viewModel = new RobotViewUserControlViewModel();
+        public RobotViewUserControlViewModel ViewModel => viewModel;
+
+        [Description("Angles of the distance sensors"), Category("Data")]
+        public double[] DistanceSensorAngles { set => viewModel.DistanceSensorAngles = value; }
+        [Description("Sensor values"), Category("Data")]
+        public double[] DistanceSensors { set => viewModel.DistanceSensors = value; }
 
         public RobotViewUserControl()
         {
             this.InitializeComponent();
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Dummy distance sensors
-            for (uint i = 315; i <= 405; i += 15)
-            {
-                var tmp = new DistanceSensorIndicator(i % 360);
-                tmp.Value = i * 1.0 / 420;
-                distanceSensorIndicators.Add(tmp);
-            }
-
-            for (uint i = 135; i <= 225; i += 15)
-            {
-                var tmp = new DistanceSensorIndicator(i % 360);
-                tmp.Value = i * 1.0 / 420;
-                distanceSensorIndicators.Add(tmp);
-            }
-
-            double[] lata = { 80, 100, 260, 280 };
-            foreach (var angle in lata)
-            {
-                distanceSensorIndicators.Add(new DistanceSensorIndicator(angle));
-            }
-
-
-            //for (uint i = 0; i < 360; i += 20)
-            //{
-            //    if (i == 60 || i == 120 || i == 240 || i == 300) continue;
-            //    var tmp = new DistanceSensorIndicator(i);
-            //    tmp.Value = i * 1.0 / 380;
-            //    distanceSensorIndicators.Add(tmp);
-            //}
-        }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e) { }
     }
 }

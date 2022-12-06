@@ -19,18 +19,18 @@ namespace DiagnosticUWPApp
         ToggleManualControlCommand toggleManualControlCommand;
 
         Task simulationTask;
-        Task sensorDataTask;
 
         private async void storeData()
         {
+            double[] values = new double[viewModel.UltrasonicSensorsOrientations.Length];
             (viewModel.Velocity, viewModel.Orientation, _) = SimSkeleton.GetData();
-            storeSensorData();
-        }
-
-        private async void storeSensorData()
-        {
-            for (int i = 16; i > 0; i--)
-                viewModel.ultrasonicSensors[i - 1].Data = SimSkeleton.GetSensorData(i - 1);
+            for (int i = 15; i >= 0; i--)
+            {
+                values[i] = SimSkeleton.GetSensorData(i);
+                viewModel.ultrasonicSensors[i].Data = (float)values[i];
+            }
+            viewModel.UltrasonicSensorValues = values;
+            Console.WriteLine(viewModel.ultrasonicSensors[0]);
         }
 
         private async void runSimulation()
@@ -49,18 +49,19 @@ namespace DiagnosticUWPApp
 
         public MainPage()
         {
+            simSkeleton = new SimSkeleton(19997);
+
             this.InitializeComponent();
 
             viewModel = new SimViewModel();
             startStopSimCommand = new StartStopSimCommand(viewModel);
             toggleManualControlCommand = new ToggleManualControlCommand(viewModel);
-            
-            simSkeleton = new SimSkeleton(19997);
+        }
 
+        private void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
             simulationTask = new Task(runSimulation);
             simulationTask.Start();
-            //sensorDataTask = new Task(storeSensorData);
-            //sensorDataTask.Start();
         }
     }
 }
