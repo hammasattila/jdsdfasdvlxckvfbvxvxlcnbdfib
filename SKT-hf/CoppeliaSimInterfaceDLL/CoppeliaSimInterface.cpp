@@ -105,10 +105,10 @@ void CoppeliaSimInterface::SimIteration()
 	pioneer_Ogamma = tempOri[2];
 
 	//proximity sensors' data for Hammas Atti's visualization
+	simxUChar detectionState;
+	float detectedPoint[3];
 	for (int i = 0; i < 16; i++)
 	{
-		simxUChar detectionState;
-		float detectedPoint[3];
 		simxReadProximitySensor(clientID, sensorHandles[i], &detectionState, &detectedPoint[0], NULL, NULL, simx_opmode_blocking);
 		if (detectionState == 1)
 		{
