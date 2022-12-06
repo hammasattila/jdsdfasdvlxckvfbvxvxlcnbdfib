@@ -1,12 +1,4 @@
 ﻿using DiagnosticUWPApp.Model;
-using DiagnosticUWPApp.View;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiagnosticUWPApp.ViewModel
 {
@@ -28,7 +20,7 @@ namespace DiagnosticUWPApp.ViewModel
                 {
                     vm.SimIsRunning = false;
                     SimSkeleton.GetControl();
-                    SimSkeleton.SetWheelSpeed(0, 0);
+                    SimSkeleton.SetWheelSpeed(0, 10);
                     vm.SimIsRunning = true;
                 }
                 else

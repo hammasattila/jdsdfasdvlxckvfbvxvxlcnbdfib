@@ -16,15 +16,19 @@
         <v:IsManualControl2BrushConverter x:Key="IsManualControl2BrushConverter"/>
     </Page.Resources>
 
-    <StackPanel Orientation="Horizontal">
+    <Grid>
         <Button Content="Start/Stop" Command="{x:Bind startStopSimCommand, Mode=OneWay}"
-                Background="{x:Bind viewModel.SimIsRunning, Mode=OneWay, Converter={StaticResource SimIsRunning2BrushConverter}}"/>
-        <Button Content="Manual Control" Command="{x:Bind toggleManualControlCommand, Mode=OneWay}"
-                Background="{x:Bind viewModel.IsManualControl, Mode=OneWay, Converter={StaticResource IsManualControl2BrushConverter}}"/>
-        <TextBlock Text="Velocity:" Height="31"/>
-        <TextBox Text="{x:Bind viewModel.Velocity, Mode=OneWay}" Height="31" Width="142"/>
-        <TextBlock Text="Orientation:" Height="31"/>
-        <TextBox Text="{x:Bind viewModel.Orientation, Mode=OneWay}" Height="31" Width="142"/>
+                Background="{x:Bind viewModel.SimIsRunning, Mode=OneWay, Converter={StaticResource SimIsRunning2BrushConverter}}" Margin="26,34,0,0" VerticalAlignment="Top"/>
+        <Button Content="Take Control" Command="{x:Bind toggleManualControlCommand, Mode=OneWay}"
+                Background="{x:Bind viewModel.IsManualControl, Mode=OneWay, Converter={StaticResource IsManualControl2BrushConverter}}" Margin="184,34,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="velocityText" HorizontalAlignment="Left" Margin="26,103,0,0" TextWrapping="Wrap" 
+                   Text="Velocity [m/s]" VerticalAlignment="Top"/>
+        <TextBlock x:Name="orientationText" HorizontalAlignment="Left" Margin="26,153,0,0" TextWrapping="Wrap" 
+                   Text="Orientation [rad]" VerticalAlignment="Top"/>
+        <TextBox x:Name="velocityDisplay" HorizontalAlignment="Left" Margin="172,97,0,0" TextWrapping="Wrap" 
+                 Text="{x:Bind viewModel.Velocity, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="orientationDisplay" HorizontalAlignment="Left" Margin="172,146,0,0" TextWrapping="Wrap" 
+                 Text="{x:Bind viewModel.Orientation, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
         <!--<ucv:RobotViewUserControl />-->
-    </StackPanel>
+    </Grid>
 </Page>
