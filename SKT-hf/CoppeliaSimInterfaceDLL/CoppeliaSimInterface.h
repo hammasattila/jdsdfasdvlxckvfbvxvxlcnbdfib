@@ -9,6 +9,7 @@ class CoppeliaSimInterface
 public:
 	int portNb = 19997;
 	int clientID;
+	int consoleHandle;
 	int pioneerHandle;
 	int leftMotorHandle, rightMotorHandle;
 	int sensorHandles[16];
