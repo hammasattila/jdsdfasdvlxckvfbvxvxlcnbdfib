@@ -28,6 +28,8 @@ namespace DiagnosticUWPApp.ViewModel
             else
             {
                 SimSkeleton.StopSimulation();
+                if (vm.IsManualControl)
+                    vm.IsManualControl = false;
             }
 
             vm.SimIsRunning = !vm.SimIsRunning;

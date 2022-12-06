@@ -62,25 +62,13 @@
             }
         }
 
-        private float[] sensorData;
-
-        public float GetSensorData(int i)
-        {
-            return sensorData[i];
-        }
-
-        public void SetSensorData(int i, float value)
-        {
-            if (sensorData[i] != value)
-            {
-                sensorData[i] = value;
-                Notify("sensorData");
-            }
-        }
+        public Sensor[] ultrasonicSensors { get; protected set; }
 
         public SimModel()
         {
-            sensorData = new float[16];
+            ultrasonicSensors = new Sensor[16];
+            for(int i = 0; i < 16; i++)
+                ultrasonicSensors[i] = new Sensor() { Id = i };
         }
     }
 }

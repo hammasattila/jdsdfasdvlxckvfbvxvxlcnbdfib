@@ -1,4 +1,5 @@
 ﻿using DiagnosticUWPApp.Model;
+using System.Threading.Tasks;
 
 namespace DiagnosticUWPApp.ViewModel
 {
@@ -12,15 +13,17 @@ namespace DiagnosticUWPApp.ViewModel
 
         public override bool CanExecute(object parameter) => true;
 
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             if (vm.SimIsRunning)
             {
                 if (vm.IsManualControl == false)
                 {
                     vm.SimIsRunning = false;
+                    await Task.Delay(10);
                     SimSkeleton.GetControl();
-                    SimSkeleton.SetWheelSpeed(0, 10);
+                    await Task.Delay(10);
+                    SimSkeleton.SetWheelSpeed(10f, 10f);
                     vm.SimIsRunning = true;
                 }
                 else

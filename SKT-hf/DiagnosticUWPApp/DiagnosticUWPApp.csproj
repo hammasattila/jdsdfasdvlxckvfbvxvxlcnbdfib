@@ -124,10 +124,12 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ObservableObject.cs" />
+    <Compile Include="Model\Sensor.cs" />
     <Compile Include="Model\SimSkeleton.cs" />
     <Compile Include="Model\SimModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CommandBase.cs" />
+    <Compile Include="ViewModel\SensorViewModel.cs" />
     <Compile Include="ViewModel\StartStopSimCommand.cs" />
     <Compile Include="ViewModel\ToggleManualControlCommand.cs" />
     <Compile Include="View\IsManualControl2BrushConverter.cs" />

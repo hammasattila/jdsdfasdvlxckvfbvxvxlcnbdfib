@@ -29,6 +29,8 @@
                  Text="{x:Bind viewModel.Velocity, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="orientationDisplay" HorizontalAlignment="Left" Margin="172,146,0,0" TextWrapping="Wrap" 
                  Text="{x:Bind viewModel.Orientation, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ultrasonicSensor8Data" HorizontalAlignment="Left" Margin="173,199,0,0" TextWrapping="Wrap" 
+            Text="{x:Bind viewModel.ultrasonicSensors[8].Data, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
         <!--<ucv:RobotViewUserControl />-->
     </Grid>
 </Page>
