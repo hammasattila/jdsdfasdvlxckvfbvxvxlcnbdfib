@@ -24,8 +24,9 @@ CoppeliaSimInterface::CoppeliaSimInterface(int portnb)
 	dw("Remote API client started. Client ID: " + std::to_string(clientID));
 
 	//Opening Auxiliary console
-	simxAuxiliaryConsoleOpen(clientID, "Remote API console", 30, 11101, NULL, NULL, NULL, NULL, &consoleHandleVar, simx_opmode_blocking);
+	simxAuxiliaryConsoleOpen(clientID, "Remote API console", 30, 01101, NULL, NULL, NULL, NULL, &consoleHandleVar, simx_opmode_blocking);
 	this->consoleHandle = consoleHandleVar;
+	simxAuxiliaryConsoleShow(clientID, consoleHandle, 1, simx_opmode_blocking);
 	dw("Auxiliary console opened!");
 	simxAuxiliaryConsolePrint(clientID, consoleHandle, "Hello from the other side! \n", simx_opmode_blocking);
 	
