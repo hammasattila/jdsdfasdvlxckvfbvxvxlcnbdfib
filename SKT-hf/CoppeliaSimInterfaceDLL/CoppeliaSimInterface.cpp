@@ -85,7 +85,7 @@ CoppeliaSimInterface::CoppeliaSimInterface(int portnb)
 	}
 
 
-	simxSynchronous(clientID, true); //turn on stepped mode
+	//simxSynchronous(clientID, true); //turn on stepped mode
 	//simxStartSimulation(clientID, simx_opmode_blocking); //Starting simulation
 }
 
@@ -183,6 +183,7 @@ void CoppeliaSimInterface::PauseSimulation()
 }
 void CoppeliaSimInterface::StartSimulation()
 {
+	simxSynchronous(clientID, true); //turn on stepped mode
 	simxStartSimulation(clientID, simx_opmode_blocking);
 	simxAuxiliaryConsolePrint(clientID, consoleHandle, "Simulation started! \n", simx_opmode_blocking);
 }
