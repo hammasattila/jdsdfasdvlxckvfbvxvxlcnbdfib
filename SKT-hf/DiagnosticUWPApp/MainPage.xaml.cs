@@ -4,6 +4,7 @@ using System;
 using Windows.UI.Xaml.Controls;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using System.ComponentModel;
 
 namespace DiagnosticUWPApp
 {
@@ -47,6 +48,33 @@ namespace DiagnosticUWPApp
                 }
         }
 
+        private void OnViewModelChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (nameof(viewModel.SimIsRunning).Equals(e.PropertyName))
+            {
+                if (viewModel.SimIsRunning)
+                {
+                    SimulationIsRunningStoryBoard.Begin();
+                }
+                else
+                {
+                    SimulationIsRunningStoryBoard.Stop();
+                }
+            }
+
+            if (nameof(viewModel.IsManualControl).Equals(e.PropertyName))
+            {
+                if (viewModel.IsManualControl)
+                {
+                    ControlIsManualStoryBoard.Begin();
+                }
+                else
+                {
+                    ControlIsManualStoryBoard.Begin();
+                }
+            }
+        }
+
         public MainPage()
         {
             simSkeleton = new SimSkeleton(19997);
@@ -56,6 +84,9 @@ namespace DiagnosticUWPApp
             viewModel = new SimViewModel();
             startStopSimCommand = new StartStopSimCommand(viewModel);
             toggleManualControlCommand = new ToggleManualControlCommand(viewModel);
+
+
+            viewModel.PropertyChanged += OnViewModelChanged;
         }
 
         private void Page_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
