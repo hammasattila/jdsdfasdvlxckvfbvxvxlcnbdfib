@@ -15,6 +15,25 @@
     <Page.Resources>
         <v:SimIsRunning2BrushConverter x:Key="SimIsRunning2BrushConverter"/>
         <v:IsManualControl2BrushConverter x:Key="IsManualControl2BrushConverter"/>
+
+        <Storyboard x:Name="SimulationIsRunningStoryBoard">
+            <DoubleAnimation Storyboard.TargetName="StartStopButton"
+                             Storyboard.TargetProperty="Opacity"
+                             AutoReverse="True"
+                             RepeatBehavior="Forever"
+                             From="1.0"
+                             To="0.8"
+                             Duration="0:0:0.25"/>
+        </Storyboard>
+        <Storyboard x:Name="ControlIsManualStoryBoard">
+            <DoubleAnimation Storyboard.TargetName="ManualControlToggleButton"
+                             Storyboard.TargetProperty="Opacity"
+                             AutoReverse="True"
+                             RepeatBehavior="Forever"
+                             From="1.0"
+                             To="0.8"
+                             Duration="0:0:1"/>
+        </Storyboard>
     </Page.Resources>
 
     <Grid>
@@ -28,10 +47,16 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <Button Content="Start/Stop" Command="{x:Bind startStopSimCommand, Mode=OneWay}"
-                Background="{x:Bind viewModel.SimIsRunning, Mode=OneWay, Converter={StaticResource SimIsRunning2BrushConverter}}" Margin="26,34,0,0" VerticalAlignment="Top"/>
-        <Button Content="Take Control" Command="{x:Bind toggleManualControlCommand, Mode=OneWay}"
-                Background="{x:Bind viewModel.IsManualControl, Mode=OneWay, Converter={StaticResource IsManualControl2BrushConverter}}" Margin="184,34,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="StartStopButton"
+                Content="Start/Stop"
+                Command="{x:Bind startStopSimCommand, Mode=OneWay}"
+                Background="{x:Bind viewModel.SimIsRunning, Mode=OneWay, Converter={StaticResource SimIsRunning2BrushConverter}}"
+                Margin="26,34,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="ManualControlToggleButton"
+                Content="Take Control"
+                Command="{x:Bind toggleManualControlCommand, Mode=OneWay}"
+                Background="{x:Bind viewModel.IsManualControl, Mode=OneWay, Converter={StaticResource IsManualControl2BrushConverter}}"
+                Margin="184,34,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="velocityText" HorizontalAlignment="Left" Margin="26,103,0,0" TextWrapping="Wrap" 
                    Text="Velocity [m/s]" VerticalAlignment="Top"/>
         <TextBlock x:Name="orientationText" HorizontalAlignment="Left" Margin="26,153,0,0" TextWrapping="Wrap" 
