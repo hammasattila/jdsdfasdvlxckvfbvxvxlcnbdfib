@@ -81,6 +81,7 @@ namespace DiagnosticUWPApp
 
         public MainPage()
         {
+            simSkeleton = new SimSkeleton();
             this.InitializeComponent();
 
             viewModel = new SimViewModel();
@@ -90,9 +91,6 @@ namespace DiagnosticUWPApp
             turnRightCommand = new TurnRightCommand(viewModel);
             goForwardCommand = new GoForwardCommand(viewModel);
             goBackwardCommand = new GoBackwardCommand(viewModel);
-
-            simSkeleton = new SimSkeleton();
-
 
             viewModel.PropertyChanged += OnViewModelChanged;
         }
