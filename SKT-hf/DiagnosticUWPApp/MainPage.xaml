@@ -34,6 +34,26 @@
                              To="0.8"
                              Duration="0:0:1"/>
         </Storyboard>
+        <Style TargetType="TextBox" x:Key="TextBoxStyle">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0.3" EndPoint="1,0.6">
+                        <GradientStop Color="Blue" Offset="0.0"/>
+                        <GradientStop Color="LightSkyBlue" Offset="0.3"/>
+                        <GradientStop Color="White" Offset="0.6"/>
+                        <GradientStop Color="Orange" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextBlockStyle">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Oblique"/>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -46,7 +66,7 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <Button x:Name="StartStopButton"
                 Content="Start/Stop"
                 Command="{x:Bind startStopSimCommand, Mode=OneWay}"
@@ -57,23 +77,51 @@
                 Command="{x:Bind toggleManualControlCommand, Mode=OneWay}"
                 CommandParameter="{x:Bind viewModel.SimIsRunning, Mode=OneWay}"
                 Background="{x:Bind viewModel.IsManualControl, Mode=OneWay, Converter={StaticResource IsManualControl2BrushConverter}}"
-                Margin="184,34,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="velocityText" HorizontalAlignment="Left" Margin="26,103,0,0" TextWrapping="Wrap" 
-                   Text="Velocity [m/s]" VerticalAlignment="Top"/>
-        <TextBlock x:Name="orientationText" HorizontalAlignment="Left" Margin="26,153,0,0" TextWrapping="Wrap" 
-                   Text="Orientation [rad]" VerticalAlignment="Top"/>
-        <TextBox x:Name="velocityDisplay" HorizontalAlignment="Left" Margin="172,97,0,0" TextWrapping="Wrap" 
-                 Text="{x:Bind viewModel.Velocity, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="orientationDisplay" HorizontalAlignment="Left" Margin="172,146,0,0" TextWrapping="Wrap" 
-                 Text="{x:Bind viewModel.Orientation, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
-        <Button Content="L" Command="{x:Bind turnLeftCommand, Mode=OneWay}" CommandParameter="{x:Bind viewModel.IsManualControl, Mode=OneWay}"
-                Margin="22,304,0,0" VerticalAlignment="Top" Width="51"/>
-        <Button Content="B" Command="{x:Bind goBackwardCommand, Mode=OneWay}" CommandParameter="{x:Bind viewModel.IsManualControl, Mode=OneWay}"
-                Margin="78,337,0,0" VerticalAlignment="Top" Width="51"/>
-        <Button Content="F" Command="{x:Bind goForwardCommand, Mode=OneWay}" CommandParameter="{x:Bind viewModel.IsManualControl, Mode=OneWay}"
-                Margin="78,273,0,0" VerticalAlignment="Top" Width="51"/>
-        <Button Content="R" Command="{x:Bind turnRightCommand, Mode=OneWay}" CommandParameter="{x:Bind viewModel.IsManualControl, Mode=OneWay}"
-                Margin="134,304,0,0" VerticalAlignment="Top" Width="51"/>
+                Margin="23,203,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="velocityText"
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Margin="26,103,0,0" TextWrapping="Wrap" 
+                   Text="Velocity [m/s]"
+                   Style="{StaticResource TextBlockStyle}"/>
+        <TextBlock x:Name="orientationText" 
+                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                   Margin="26,153,0,0" TextWrapping="Wrap" 
+                   Text="Orientation [rad]"
+                   Style="{StaticResource TextBlockStyle}"/>
+        <TextBox x:Name="velocityDisplay" 
+                 HorizontalAlignment="Left" VerticalAlignment="Top"
+                 Margin="172,97,0,0" Width="120" TextWrapping="Wrap" 
+                 Text="{x:Bind viewModel.Velocity, Mode=OneWay}"
+                 Style="{StaticResource TextBoxStyle}"/>
+        <TextBox x:Name="orientationDisplay" 
+                 HorizontalAlignment="Left" VerticalAlignment="Top"
+                 Margin="172,146,0,0" Width="120" TextWrapping="Wrap"
+                 Text="{x:Bind viewModel.Orientation, Mode=OneWay}"
+                 Style="{StaticResource TextBoxStyle}"/>
+        <Button x:Name="turnLeftButton" 
+                Content="L" 
+                Command="{x:Bind turnLeftCommand, Mode=OneWay}" 
+                CommandParameter="{x:Bind viewModel.IsManualControl, Mode=OneWay}"
+                Margin="16,288,0,0" 
+                VerticalAlignment="Top" Width="51"/>
+        <Button x:Name="goBackwardButton"
+                Content="B" 
+                Command="{x:Bind goBackwardCommand, Mode=OneWay}" 
+                CommandParameter="{x:Bind viewModel.IsManualControl, Mode=OneWay}"
+                Margin="72,321,0,0" 
+                VerticalAlignment="Top" Width="51"/>
+        <Button x:Name="goForwardButton" 
+                Content="F" 
+                Command="{x:Bind goForwardCommand, Mode=OneWay}" 
+                CommandParameter="{x:Bind viewModel.IsManualControl, Mode=OneWay}"
+                Margin="72,257,0,0" 
+                VerticalAlignment="Top" Width="51"/>
+        <Button x:Name="turnRightButton"
+                Content="R" 
+                Command="{x:Bind turnRightCommand, Mode=OneWay}" 
+                CommandParameter="{x:Bind viewModel.IsManualControl, Mode=OneWay}"
+                Margin="128,288,0,0" 
+                VerticalAlignment="Top" Width="51"/>
         <!--<ucv:RobotViewUserControl />-->
         <ucv:RobotViewUserControl Grid.Column="1"
                                   DistanceSensorAngles="{x:Bind viewModel.UltrasonicSensorsOrientations, Mode=OneWay}"

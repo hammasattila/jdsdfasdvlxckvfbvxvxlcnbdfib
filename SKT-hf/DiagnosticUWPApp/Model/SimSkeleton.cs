@@ -12,11 +12,6 @@ namespace DiagnosticUWPApp.Model
         public SimSkeleton()
         {
             syncObject = new Object();
-            SimInterfaceInit();
-        }
-
-        public static void SimInterfaceInit()
-        {
             Simulation = csharp_CoppeliaSimInterface(portNumber);
         }
 
