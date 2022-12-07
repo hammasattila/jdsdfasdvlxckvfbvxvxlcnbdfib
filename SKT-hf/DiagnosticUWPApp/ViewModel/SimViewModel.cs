@@ -1,4 +1,5 @@
 ﻿using DiagnosticUWPApp.Model;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -22,6 +23,17 @@ namespace DiagnosticUWPApp.ViewModel
             }
         }
         public ObservableCollection<SensorViewModel> ultrasonicSensors { get; set; }
+
+        private double _simStep = 0.0;
+        public double SimStep
+        {
+            get => _simStep;
+            set
+            {
+                _simStep = Math.Max(0.0, value);
+                Notify(nameof(SimStep));
+            }
+        }
 
         public SimViewModel ()
         {

@@ -18,6 +18,16 @@
     </Page.Resources>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
         <Button Content="Start/Stop" Command="{x:Bind startStopSimCommand, Mode=OneWay}"
                 Background="{x:Bind viewModel.SimIsRunning, Mode=OneWay, Converter={StaticResource SimIsRunning2BrushConverter}}" Margin="26,34,0,0" VerticalAlignment="Top"/>
         <Button Content="Take Control" Command="{x:Bind toggleManualControlCommand, Mode=OneWay}"
@@ -32,7 +42,12 @@
                  Text="{x:Bind viewModel.Orientation, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="ultrasonicSensor8Data" HorizontalAlignment="Left" Margin="173,199,0,0" TextWrapping="Wrap" 
             Text="{x:Bind viewModel.ultrasonicSensors[8].Data, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
-        <ucv:RobotViewUserControl DistanceSensorAngles="{x:Bind viewModel.UltrasonicSensorsOrientations, Mode=OneWay}"
+        <ucv:RobotViewUserControl Grid.Column="1"
+                                  DistanceSensorAngles="{x:Bind viewModel.UltrasonicSensorsOrientations, Mode=OneWay}"
                                   DistanceSensors="{x:Bind viewModel.UltrasonicSensorValues, Mode=OneWay}" />
+        <ucv:RobotHistoricValuesUserControl Grid.Column="0" Grid.ColumnSpan="2"
+                                            Grid.Row="1"
+                                            SimulationStep="{x:Bind viewModel.SimStep, Mode=OneWay}"
+                                            Velocity="{x:Bind viewModel.Velocity, Mode=OneWay}"/>
     </Grid>
 </Page>
