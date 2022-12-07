@@ -4,6 +4,7 @@ using System;
 using Windows.UI.Xaml.Controls;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace DiagnosticUWPApp
 {
@@ -15,8 +16,11 @@ namespace DiagnosticUWPApp
         SimViewModel viewModel;
 
         StartStopSimCommand startStopSimCommand;
-
         ToggleManualControlCommand toggleManualControlCommand;
+        TurnLeftCommand turnLeftCommand;
+        TurnRightCommand turnRightCommand;
+        GoForwardCommand goForwardCommand;
+        GoBackwardCommand goBackwardCommand;
 
         Task simulationTask;
         Task sensorDataTask;
@@ -54,13 +58,15 @@ namespace DiagnosticUWPApp
             viewModel = new SimViewModel();
             startStopSimCommand = new StartStopSimCommand(viewModel);
             toggleManualControlCommand = new ToggleManualControlCommand(viewModel);
-            
-            simSkeleton = new SimSkeleton(19997);
+            turnLeftCommand = new TurnLeftCommand(viewModel);
+            turnRightCommand = new TurnRightCommand(viewModel);
+            goForwardCommand = new GoForwardCommand(viewModel);
+            goBackwardCommand = new GoBackwardCommand(viewModel);
+
+            simSkeleton = new SimSkeleton();
 
             simulationTask = new Task(runSimulation);
             simulationTask.Start();
-            //sensorDataTask = new Task(storeSensorData);
-            //sensorDataTask.Start();
         }
     }
 }

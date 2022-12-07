@@ -6,12 +6,18 @@ namespace DiagnosticUWPApp.Model
     public class SimSkeleton
     {
         public static IntPtr Simulation;
+        private const int portNumber = 19997;
         private static object syncObject;
 
-        public SimSkeleton(int portNumber)
+        public SimSkeleton()
+        {
+            syncObject = new Object();
+            SimInterfaceInit();
+        }
+
+        public static void SimInterfaceInit()
         {
             Simulation = csharp_CoppeliaSimInterface(portNumber);
-            syncObject = new Object();
         }
 
         public static void StartSimulation()

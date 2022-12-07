@@ -19,8 +19,8 @@
     <Grid>
         <Button Content="Start/Stop" Command="{x:Bind startStopSimCommand, Mode=OneWay}"
                 Background="{x:Bind viewModel.SimIsRunning, Mode=OneWay, Converter={StaticResource SimIsRunning2BrushConverter}}" Margin="26,34,0,0" VerticalAlignment="Top"/>
-        <Button Content="Take Control" Command="{x:Bind toggleManualControlCommand, Mode=OneWay}"
-                Background="{x:Bind viewModel.IsManualControl, Mode=OneWay, Converter={StaticResource IsManualControl2BrushConverter}}" Margin="184,34,0,0" VerticalAlignment="Top"/>
+        <Button Content="Take/Release Control" Command="{x:Bind toggleManualControlCommand, Mode=OneWay}" CommandParameter="{x:Bind viewModel.SimIsRunning, Mode=OneWay}"
+                Background="{x:Bind viewModel.IsManualControl, Mode=OneWay, Converter={StaticResource IsManualControl2BrushConverter}}" Margin="29,216,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="velocityText" HorizontalAlignment="Left" Margin="26,103,0,0" TextWrapping="Wrap" 
                    Text="Velocity [m/s]" VerticalAlignment="Top"/>
         <TextBlock x:Name="orientationText" HorizontalAlignment="Left" Margin="26,153,0,0" TextWrapping="Wrap" 
@@ -29,8 +29,14 @@
                  Text="{x:Bind viewModel.Velocity, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="orientationDisplay" HorizontalAlignment="Left" Margin="172,146,0,0" TextWrapping="Wrap" 
                  Text="{x:Bind viewModel.Orientation, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="ultrasonicSensor8Data" HorizontalAlignment="Left" Margin="173,199,0,0" TextWrapping="Wrap" 
-            Text="{x:Bind viewModel.ultrasonicSensors[8].Data, Mode=OneWay}" VerticalAlignment="Top" Width="120"/>
+        <Button Content="L" Command="{x:Bind turnLeftCommand, Mode=OneWay}" CommandParameter="{x:Bind viewModel.IsManualControl, Mode=OneWay}"
+                Margin="22,304,0,0" VerticalAlignment="Top" Width="51"/>
+        <Button Content="B" Command="{x:Bind goBackwardCommand, Mode=OneWay}" CommandParameter="{x:Bind viewModel.IsManualControl, Mode=OneWay}"
+                Margin="78,337,0,0" VerticalAlignment="Top" Width="51"/>
+        <Button Content="F" Command="{x:Bind goForwardCommand, Mode=OneWay}" CommandParameter="{x:Bind viewModel.IsManualControl, Mode=OneWay}"
+                Margin="78,273,0,0" VerticalAlignment="Top" Width="51"/>
+        <Button Content="R" Command="{x:Bind turnRightCommand, Mode=OneWay}" CommandParameter="{x:Bind viewModel.IsManualControl, Mode=OneWay}"
+                Margin="134,304,0,0" VerticalAlignment="Top" Width="51"/>
         <!--<ucv:RobotViewUserControl />-->
     </Grid>
 </Page>

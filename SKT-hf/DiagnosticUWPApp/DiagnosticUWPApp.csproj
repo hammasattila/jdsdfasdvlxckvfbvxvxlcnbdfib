@@ -132,6 +132,10 @@
     <Compile Include="ViewModel\SensorViewModel.cs" />
     <Compile Include="ViewModel\StartStopSimCommand.cs" />
     <Compile Include="ViewModel\ToggleManualControlCommand.cs" />
+    <Compile Include="ViewModel\GoBackwardCommand.cs" />
+    <Compile Include="ViewModel\GoForwardCommand.cs" />
+    <Compile Include="ViewModel\TurnRightCommand.cs" />
+    <Compile Include="ViewModel\TurnLeftCommand.cs" />
     <Compile Include="View\IsManualControl2BrushConverter.cs" />
     <Compile Include="View\UserControls\DistanceIndicatorUserControl.xaml.cs">
       <DependentUpon>DistanceIndicatorUserControl.xaml</DependentUpon>
