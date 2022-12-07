@@ -30,7 +30,7 @@ namespace DiagnosticUWPApp
                 viewModel.ultrasonicSensors[i].Data = (float)values[i];
             }
             viewModel.UltrasonicSensorValues = values;
-            Console.WriteLine(viewModel.ultrasonicSensors[0]);
+            viewModel.SimStep += 1.0;
         }
 
         private async void runSimulation()

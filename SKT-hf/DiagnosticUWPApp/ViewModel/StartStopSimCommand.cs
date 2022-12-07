@@ -23,6 +23,7 @@ namespace DiagnosticUWPApp.ViewModel
         {
             if (vm.SimIsRunning == false)
             {
+                vm.SimStep = 0.0;
                 SimSkeleton.StartSimulation();
             }
             else
